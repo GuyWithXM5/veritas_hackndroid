@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
           } else {
             return MaterialApp(
               initialRoute: snapshot.data ??
-                  '/first', // Use initialRoute when available, otherwise fallback to '/first'
+                  '/first', // Use initialRoute when available, otherwise fallback to '/first' hehe
               routes: {
                 "/": (context) => splash(),
                 "/first": (context) => firstpg(),
