@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:veritasapp/Widgets/Dabba.dart';
 import 'package:veritasapp/Widgets/search.dart';
 import 'package:veritasapp/Widgets/toplawyers.dart';
@@ -10,7 +10,7 @@ class cldashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double varHeight = MediaQuery.of(context).size.height;
-    final double varWidth = MediaQuery.of(context).size.width;
+    // final double varWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(132, 189, 255, 1),
       body: SingleChildScrollView(
