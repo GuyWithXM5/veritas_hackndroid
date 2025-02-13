@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   late final Future<String> _initialRoute;
 
   MyApp() {
-    _initialRoute = _determineInitialRoute();
+    _initialRoute = _determineInitialRoute();                                                                                                                                                                                                                                                                           
   }
 
   Future<String> _determineInitialRoute() async {
