@@ -38,6 +38,7 @@ dependencies:
   flutter_svg: ^2.0.17
   firebase_auth: ^5.4.2
   cloud_firestore: ^5.6.3
+  standard_searchbar: ^2.0.0
 
 dev_dependencies:
   flutter_test:
