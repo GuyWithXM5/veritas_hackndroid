@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:veritasapp/pages/client/casestatus.dart';
 import 'package:veritasapp/pages/client/selectlawyer.dart';
 import 'package:veritasapp/pages/login_signup/signupdetails_client.dart';
 import 'package:veritasapp/pages/login_signup/signupdetails_lawyer.dart';
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
                 "/regcase": (context) => regcase(),
                 "/findcase": (context) => findcase(),
                 "/selectlawyer": (context) => Selectlawyer(),
+                "/casestatus": (context) => Casestatus(),
               },
             );
           }
