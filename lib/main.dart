@@ -17,10 +17,13 @@ import "package:veritasapp/pages/lawyer/lawyerfeat.dart";
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:veritasapp/pages/lawyer/lawyerdashboard.dart';
 import 'package:veritasapp/pages/lawyer/findcase.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseAppCheck.instance.activate();
+
 
   runApp(MyApp());
 }

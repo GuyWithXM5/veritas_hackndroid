@@ -48,13 +48,18 @@ class cldashboard extends StatelessWidget {
               height: varHeight * 0.2,
             ),
             SizedBox(height: varHeight * 0.05),
-            DashboardBox(
-              textSize: 24,
-              boxColor: Colors.white,
-              imagePath: "assets/images/Judge-rafiki 1.svg",
-              textColor: Colors.black,
-              text: "Case\nStatus",
-              height: varHeight * 0.2,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/chat");
+              },
+              child: DashboardBox(
+                textSize: 24,
+                boxColor: Colors.white,
+                imagePath: "assets/images/Judge-rafiki 1.svg",
+                textColor: Colors.black,
+                text: "AI help",
+                height: varHeight * 0.2,
+              ),
             ),
           ],
         ),
