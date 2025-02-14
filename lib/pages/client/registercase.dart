@@ -93,7 +93,10 @@ Future<void> _filepicker() async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Register a Case"),
+        title: const Text("Register a Case",
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+        ),),
         backgroundColor: Color.fromRGBO(132, 189, 255, 1),
       ),
       backgroundColor: const Color.fromRGBO(132, 189, 255, 1),
@@ -392,15 +395,18 @@ Future<void> _filepicker() async {
         ),
       ),
 
-      // bottomNavigationBar: BottomNavigationDabba(
-      //   index: 0,
-      //   onTap: (index) {
-      //     // print("Selected Index: $index");
-      //   },
-      //   backgroundColor: Colors.grey[200]!,
-      //   buttonColor: Colors.black,
-      //   icons: [Icons.home, Icons.file_copy, Icons.payment],
-      // ),
+      bottomNavigationBar: BottomNavigationDabba(
+        index: 0,
+        onTap: (index) {
+          if(index==0){
+            Navigator.pop(context);
+          }
+          // print("Selected Index: $index");
+        },
+        backgroundColor: Colors.grey[200]!,
+        buttonColor: Colors.black,
+        icons: [Icons.home, Icons.file_copy, Icons.payment],
+      ),
     );
   }
 }

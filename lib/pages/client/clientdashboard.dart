@@ -46,7 +46,7 @@ class cldashboard extends StatelessWidget {
               child: DashboardBox(
                 textSize: 24,
                 boxColor: Colors.white,
-                imagePath: "assets/images/Judge-rafiki 1.svg",
+                imagePath: "assets/images/Lawyer-pana 1.svg",
                 textColor: Colors.black,
                 text: "Case\nStatus",
                 height: varHeight * 0.2,
@@ -60,14 +60,18 @@ class cldashboard extends StatelessWidget {
               child: DashboardBox(
                 textSize: 24,
                 boxColor: Colors.white,
-                imagePath: "assets/images/Judge-rafiki 1.svg",
+                imagePath: "assets/images/Chat bot-pana 1.svg",
                 textColor: Colors.black,
                 text: "AI help",
                 height: varHeight * 0.2,
               ),
             ),
+            SizedBox(
+              height: varHeight * 0.05,
+            ),
           ],
         ),
+        
       ),
       bottomNavigationBar: BottomNavigationDabba(
         index: 0,

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:veritasapp/Widgets/bottomnavigation.dart';
 
 class Casestatus extends StatefulWidget {
   const Casestatus({super.key});
@@ -68,9 +69,9 @@ class _CaseStatusState extends State<Casestatus> {
       appBar: AppBar(
         title: const Text(
           "Your Case Status",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor:const Color.fromRGBO(132, 189, 255, 1),
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -86,7 +87,7 @@ class _CaseStatusState extends State<Casestatus> {
           if (snapshot.hasError) {
             return Center(
                 child: Text("Error: ${snapshot.error}",
-                    style: const TextStyle(color: Colors.red)));
+                    style: const TextStyle(color: Colors.black)));
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return const Center(
@@ -145,18 +146,18 @@ class _CaseStatusState extends State<Casestatus> {
                                   ? Colors.orange
                                   : caseData['status'] == 'Approved'
                                       ? Colors.green
-                                      : Colors.red,
+                                      : Colors.black,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
-                              caseData['status'] ?? 'Unknown',
+                              caseData['status'] ?? 'Pending',
                               style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
+                            icon: const Icon(Icons.delete, color: Colors.black),
                             onPressed: () => _confirmDelete(caseDoc.id),
                           ),
                         ],
@@ -168,6 +169,18 @@ class _CaseStatusState extends State<Casestatus> {
             },
           );
         },
+      ),
+      bottomNavigationBar: BottomNavigationDabba(
+        index: 0,
+        onTap: (index ) {
+          // print("Selected Index: $index");
+          if(index==0){
+            Navigator.pushNamed(context, "/cldashboard");
+          }
+        },
+        backgroundColor: Colors.grey[200]!,
+        buttonColor: Colors.black,
+        icons: [Icons.home, Icons.file_copy, Icons.payment],
       ),
     );
   }
