@@ -75,7 +75,7 @@ class _CaseStatusState extends State<Casestatus> {
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _db
-            .collection("Registerted_Cases(non-assigned)")
+            .collection("regcase")
             .doc(_firebaseAuth.currentUser!.uid)
             .collection("Cases")
             .snapshots(),

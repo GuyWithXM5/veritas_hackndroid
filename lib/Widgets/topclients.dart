@@ -10,11 +10,11 @@ class AutoScrollDashboardLaw extends StatefulWidget {
 
 class _AutoScrollDashboardStateLaw extends State<AutoScrollDashboardLaw> {
   final PageController _pageController = PageController(viewportFraction: 0.9);
-
   int _currentPage = 0;
   List<String> _caseBriefings = [];
   bool _isLoading = true;
   Timer? _timer;
+  final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   @override
   void initState() {
@@ -24,41 +24,23 @@ class _AutoScrollDashboardStateLaw extends State<AutoScrollDashboardLaw> {
 
   void _fetchCaseBriefings() async {
     try {
-      final FirebaseFirestore _db = FirebaseFirestore.instance;
-      QuerySnapshot clientsSnapshot =
-          await _db.collection("hehe").get();
+      // Fetch all cases across all users using collectionGroup
+      QuerySnapshot casesSnapshot = await _db.collectionGroup('Cases').get();
+
       List<String> caseBriefings = [];
 
-      if (clientsSnapshot.docs.isEmpty) {
-        print("No clients found in Registered_Cases.");
-      }
-
-      for (var clientDoc in clientsSnapshot.docs) {
-        String clientId = clientDoc.id;
-        print("hello");
-        print(clientId);
-        QuerySnapshot casesSnapshot = await _db
-            .collection("hehe")
-            .doc(clientId)
-            .collection('cases')
-            .get();
-
-        if (casesSnapshot.docs.isEmpty) {
-          print("No cases found for client: $clientId");
-        }
-
-        for (var caseDoc in casesSnapshot.docs) {
-          final caseData = caseDoc.data() as Map<String, dynamic>;
-          if (caseData.containsKey('briefing')) {
-            caseBriefings.add(caseData['briefing'].toString());
-          } else {
-            print("Missing 'briefing' field in case: ${caseDoc.id}");
-          }
-        }
-      }
-
-      if (caseBriefings.isEmpty) {
+      if (casesSnapshot.docs.isEmpty) {
+        print("No cases found.");
         caseBriefings.add("No cases available");
+      }
+
+      for (var caseDoc in casesSnapshot.docs) {
+        final caseData = caseDoc.data() as Map<String, dynamic>;
+        if (caseData.containsKey('briefing')) {
+          caseBriefings.add(caseData['briefing'].toString());
+        } else {
+          print("Missing 'briefing' field in case: ${caseDoc.id}");
+        }
       }
 
       setState(() {
@@ -68,7 +50,7 @@ class _AutoScrollDashboardStateLaw extends State<AutoScrollDashboardLaw> {
 
       print("Fetched Case Briefings: $_caseBriefings");
 
-      _startAutoSwipe(); // Start auto-scroll only after loading data
+      _startAutoSwipe(); // Start auto-scroll after loading data
     } catch (e) {
       print("Error fetching case briefings: $e");
       setState(() {
