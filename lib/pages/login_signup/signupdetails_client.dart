@@ -4,15 +4,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:veritasapp/pages/client/clientdashboard.dart';
 
 class signInDetails_client extends StatefulWidget {
+  const signInDetails_client({super.key});
+
   @override
   State<signInDetails_client> createState() => _signInDetailsState();
 }
 
 class _signInDetailsState extends State<signInDetails_client> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _phonenoController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _phonenoController = TextEditingController();
 
   @override
   void dispose() {
@@ -145,20 +147,6 @@ class _signInDetailsState extends State<signInDetails_client> {
                 ),
               ),
               ElevatedButton(
-                child: SizedBox(
-                  width: 300,
-                  height: 50,
-                  child: Center(
-                    child: Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Color.fromRGBO(
                     44,
@@ -198,6 +186,20 @@ class _signInDetailsState extends State<signInDetails_client> {
                         .showSnackBar(SnackBar(content: Text("${e.message}")));
                   }
                 },
+                child: SizedBox(
+                  width: 300,
+                  height: 50,
+                  child: Center(
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

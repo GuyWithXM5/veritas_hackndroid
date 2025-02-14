@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:veritasapp/Widgets/Dabba.dart'; // Make sure your Dabba widget is correctly imported
+
+import 'package:veritasapp/Widgets/Dabba.dart'; 
 
 class AutoScrollDashboard extends StatefulWidget {
   @override

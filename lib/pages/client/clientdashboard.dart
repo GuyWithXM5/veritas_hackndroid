@@ -20,12 +20,14 @@ class cldashboard extends StatelessWidget {
           children: [
             SizedBox(height: varHeight * 0.05),
             SearchButton(),
-            SizedBox(height: varHeight * 0.05),
+            SizedBox(
+              height: varHeight * 0.05,
+            ),
             AutoScrollDashboard(),
             SizedBox(height: varHeight * 0.05),
             GestureDetector(
               child: DashboardBox(
-                textSize: 26,
+                textSize: 24,
                 boxColor: Colors.white,
                 imagePath: "assets/images/Judge-rafiki 1.svg",
                 textColor: Colors.black,
@@ -38,30 +40,16 @@ class cldashboard extends StatelessWidget {
             ),
             SizedBox(height: varHeight * 0.05),
             DashboardBox(
-              textSize: 26,
+              textSize: 24,
               boxColor: Colors.white,
-              imagePath: "assets/images/Lawyer-pana 1.svg",
+              imagePath: "assets/images/Judge-rafiki 1.svg",
               textColor: Colors.black,
               text: "Case\nStatus",
               height: varHeight * 0.2,
             ),
             SizedBox(height: varHeight * 0.05),
-            GestureDetector(
-              child: DashboardBox(
-                textSize: 26,
-                boxColor: Colors.white,
-                imagePath: "assets/images/Chat bot-pana 1.svg",
-                textColor: Colors.black,
-                text: "Get your\nDocuments\nReady",
-                height: varHeight * 0.2,
-              ),
-              onTap: () {
-                Navigator.pushNamed(context, "/chat");
-              },
-            ),
-            SizedBox(height: varHeight * 0.05),
             DashboardBox(
-              textSize: 26,
+              textSize: 24,
               boxColor: Colors.white,
               imagePath: "assets/images/Judge-rafiki 1.svg",
               textColor: Colors.black,
