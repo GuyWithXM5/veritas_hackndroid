@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:veritasapp/Widgets/Dabba.dart';
 import 'package:veritasapp/Widgets/search.dart';
 import 'package:veritasapp/Widgets/toplawyers.dart';
+import 'package:veritasapp/Widgets/bottomnavigation.dart';
+// import 'package:veritasapp/pages/chatscreen.dart';
+// import 'package:veritasapp/pages/client/registercase.dart';
 
 class cldashboard extends StatelessWidget {
   const cldashboard({super.key});
@@ -10,7 +13,6 @@ class cldashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double varHeight = MediaQuery.of(context).size.height;
-    // final double varWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(132, 189, 255, 1),
       body: SingleChildScrollView(
@@ -18,17 +20,65 @@ class cldashboard extends StatelessWidget {
           children: [
             SizedBox(height: varHeight * 0.05),
             SearchButton(),
-            SizedBox(height: varHeight*0.05,),
+            SizedBox(height: varHeight * 0.05),
             AutoScrollDashboard(),
             SizedBox(height: varHeight * 0.05),
-            DashboardBox(boxColor: Colors.white, imagePath: "assets/images/Judge-rafiki 1.svg", textColor: Colors.black, text: "New Case", height: varHeight*0.2,),
+            GestureDetector(
+              child: DashboardBox(
+                textSize: 26,
+                boxColor: Colors.white,
+                imagePath: "assets/images/Judge-rafiki 1.svg",
+                textColor: Colors.black,
+                text: "New Case",
+                height: varHeight * 0.2,
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, "/regcase");
+              },
+            ),
             SizedBox(height: varHeight * 0.05),
-            DashboardBox(boxColor: Colors.white, imagePath: "assets/images/Judge-rafiki 1.svg", textColor: Colors.black, text: "Case\nStatus", height: varHeight*0.2,),
+            DashboardBox(
+              textSize: 26,
+              boxColor: Colors.white,
+              imagePath: "assets/images/Lawyer-pana 1.svg",
+              textColor: Colors.black,
+              text: "Case\nStatus",
+              height: varHeight * 0.2,
+            ),
             SizedBox(height: varHeight * 0.05),
-            DashboardBox(boxColor: Colors.white, imagePath: "assets/images/Judge-rafiki 1.svg", textColor: Colors.black, text: "Case\nStatus", height: varHeight*0.2,),
-            
+            GestureDetector(
+              child: DashboardBox(
+                textSize: 26,
+                boxColor: Colors.white,
+                imagePath: "assets/images/Chat bot-pana 1.svg",
+                textColor: Colors.black,
+                text: "Get your\nDocuments\nReady",
+                height: varHeight * 0.2,
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, "/chat");
+              },
+            ),
+            SizedBox(height: varHeight * 0.05),
+            DashboardBox(
+              textSize: 26,
+              boxColor: Colors.white,
+              imagePath: "assets/images/Judge-rafiki 1.svg",
+              textColor: Colors.black,
+              text: "Case\nStatus",
+              height: varHeight * 0.2,
+            ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationDabba(
+        index: 0,
+        onTap: (index) {
+          print("Selected Index: $index");
+        },
+        backgroundColor: Colors.grey[200]!,
+        buttonColor: Colors.black,
+        icons: [Icons.home, Icons.file_copy, Icons.payment],
       ),
     );
   }
