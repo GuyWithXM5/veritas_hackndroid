@@ -57,6 +57,7 @@ class SearchButton extends StatelessWidget {
 class _PopupCard extends StatelessWidget {
   const _PopupCard({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Center(

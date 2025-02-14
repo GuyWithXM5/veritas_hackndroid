@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:veritasapp/Widgets/Dabba.dart';
+
+import 'package:veritasapp/Widgets/Dabba.dart'; 
 
 class AutoScrollDashboard extends StatefulWidget {
-  const AutoScrollDashboard({super.key});
-
   @override
   _AutoScrollDashboardState createState() => _AutoScrollDashboardState();
 }
@@ -63,6 +62,7 @@ class _AutoScrollDashboardState extends State<AutoScrollDashboard> {
                 textColor: Colors.white,
                 text: "Lawyer $index",
                 height: varHeight * 0.3,
+
               ),
             ),
           );
