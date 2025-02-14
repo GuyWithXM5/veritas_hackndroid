@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:veritasapp/hero_dialog_route.dart';
 
 class SearchButton extends StatelessWidget {
-  const SearchButton({Key? key}) : super(key: key);
+  const SearchButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class SearchButton extends StatelessWidget {
 }
 
 class _PopupCard extends StatelessWidget {
-  const _PopupCard({Key? key}) : super(key: key);
+  const _PopupCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,8 +67,8 @@ class _PopupCard extends StatelessWidget {
           child: Material(
             color: Colors.white,
             elevation: 2,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(

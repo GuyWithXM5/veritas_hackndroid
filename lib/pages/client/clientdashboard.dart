@@ -18,15 +18,39 @@ class cldashboard extends StatelessWidget {
           children: [
             SizedBox(height: varHeight * 0.05),
             SearchButton(),
-            SizedBox(height: varHeight*0.05,),
+            SizedBox(
+              height: varHeight * 0.05,
+            ),
             AutoScrollDashboard(),
             SizedBox(height: varHeight * 0.05),
-            DashboardBox(boxColor: Colors.white, imagePath: "assets/images/Judge-rafiki 1.svg", textColor: Colors.black, text: "New Case", height: varHeight*0.2,),
+            GestureDetector(
+              child: DashboardBox(
+                boxColor: Colors.white,
+                imagePath: "assets/images/Judge-rafiki 1.svg",
+                textColor: Colors.black,
+                text: "New Case",
+                height: varHeight * 0.2,
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, "/regcase");
+              },
+            ),
             SizedBox(height: varHeight * 0.05),
-            DashboardBox(boxColor: Colors.white, imagePath: "assets/images/Judge-rafiki 1.svg", textColor: Colors.black, text: "Case\nStatus", height: varHeight*0.2,),
+            DashboardBox(
+              boxColor: Colors.white,
+              imagePath: "assets/images/Judge-rafiki 1.svg",
+              textColor: Colors.black,
+              text: "Case\nStatus",
+              height: varHeight * 0.2,
+            ),
             SizedBox(height: varHeight * 0.05),
-            DashboardBox(boxColor: Colors.white, imagePath: "assets/images/Judge-rafiki 1.svg", textColor: Colors.black, text: "Case\nStatus", height: varHeight*0.2,),
-            
+            DashboardBox(
+              boxColor: Colors.white,
+              imagePath: "assets/images/Judge-rafiki 1.svg",
+              textColor: Colors.black,
+              text: "Case\nStatus",
+              height: varHeight * 0.2,
+            ),
           ],
         ),
       ),

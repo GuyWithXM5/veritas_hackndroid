@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:veritasapp/pages/client/selectlawyer.dart';
 import 'package:veritasapp/pages/login_signup/signupdetails_client.dart';
 import 'package:veritasapp/pages/login_signup/signupdetails_lawyer.dart';
 import 'package:veritasapp/pages/splash.dart';
@@ -27,8 +28,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   late final Future<String> _initialRoute;
 
-  MyApp() {
-    _initialRoute = _determineInitialRoute();                                                                                                                                                                                                                                                                           
+  MyApp({super.key}) {
+    _initialRoute = _determineInitialRoute();
   }
 
   Future<String> _determineInitialRoute() async {
@@ -85,6 +86,7 @@ class MyApp extends StatelessWidget {
                     ),
                 "/regcase": (context) => regcase(),
                 "/findcase": (context) => findcase(),
+                "/selectlawyer": (context) => Selectlawyer(),
               },
             );
           }

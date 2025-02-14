@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:veritasapp/hero_dialog_route.dart';
 
 class lawyerdashboard extends StatelessWidget {
-  const lawyerdashboard({Key? key}) : super(key: key);
+  const lawyerdashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class lawyerdashboard extends StatelessWidget {
                   ),
                   Positioned(
                       left: 285,
-                      child: Container(
+                      child: SizedBox(
                         height: 70,
                         width: 70,
                         child: GestureDetector(
@@ -282,7 +282,7 @@ class lawyerdashboard extends StatelessWidget {
 
 class _PopupCard extends StatelessWidget {
   /// {@macro add_todo_popup_card}
-  const _PopupCard({Key? key}) : super(key: key);
+  const _PopupCard({super.key});
 
   @override
   Widget build(BuildContext context) {

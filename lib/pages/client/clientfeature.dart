@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:veritasapp/functions.dart';
 
 class clfeat extends StatefulWidget {
+  const clfeat({super.key});
+
   // const clfeat({super.key});
 
   @override
@@ -54,7 +56,7 @@ class _clfeatState extends State<clfeat> {
                       const SizedBox(
                         height: 40,
                       ),
-                      Container(
+                      SizedBox(
                         height: 400,
                         child: SvgPicture.asset(images[index]),
                       ),

@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class chatsection extends StatefulWidget {
   final String receivertype;
 
-  chatsection({Key? key, required this.receivertype}) : super(key: key);
+  const chatsection({super.key, required this.receivertype});
 
   @override
   State<chatsection> createState() => _chatsectionState();
@@ -18,7 +18,7 @@ class chatsection extends StatefulWidget {
 class _chatsectionState extends State<chatsection> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
-  TextEditingController _message = TextEditingController();
+  final TextEditingController _message = TextEditingController();
 
   String getChatRoomId() {
     final String currentUserId = _firebaseAuth.currentUser!.uid;
@@ -131,15 +131,15 @@ class _chatsectionState extends State<chatsection> {
                                 decoration: BoxDecoration(
                                     color: Colors.blueAccent[100],
                                     shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.all(
-                                        new Radius.circular(10))),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
                                 child: Container(
                                   padding: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
                                       color: Colors.blueAccent[200],
                                       shape: BoxShape.rectangle,
                                       borderRadius: BorderRadius.all(
-                                          new Radius.circular(10))),
+                                          Radius.circular(10))),
                                   child: Text(
                                     i["message"],
                                   ),
@@ -159,15 +159,15 @@ class _chatsectionState extends State<chatsection> {
                                 decoration: BoxDecoration(
                                     color: Colors.grey[500],
                                     shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.all(
-                                        new Radius.circular(10))),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10))),
                                 child: Container(
                                   padding: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
                                       color: Colors.grey[600],
                                       shape: BoxShape.rectangle,
                                       borderRadius: BorderRadius.all(
-                                          new Radius.circular(10))),
+                                          Radius.circular(10))),
                                   child: Text(
                                     i["message"],
                                   ),
@@ -200,7 +200,7 @@ class _chatsectionState extends State<chatsection> {
                           color: Colors.blueAccent[100],
                           shape: BoxShape.rectangle,
                           borderRadius:
-                              BorderRadius.all(new Radius.circular(25.7))),
+                              BorderRadius.all(Radius.circular(25.7))),
                       child: TextField(
                         keyboardType: TextInputType.multiline,
                         maxLines: null,
