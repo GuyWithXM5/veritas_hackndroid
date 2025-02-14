@@ -4,17 +4,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:veritasapp/pages/lawyer/lawyerdashboard.dart';
 
 class signInDetails_lawyer extends StatefulWidget {
+  const signInDetails_lawyer({super.key});
+
   @override
   State<signInDetails_lawyer> createState() => _signInDetailsState();
 }
 
 class _signInDetailsState extends State<signInDetails_lawyer> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _phonenoController = TextEditingController();
-  TextEditingController _barnoController = TextEditingController();
-  TextEditingController _otpController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _phonenoController = TextEditingController();
+  final TextEditingController _barnoController = TextEditingController();
+  final TextEditingController _otpController = TextEditingController();
   String? _selectedOption;
 
   @override
@@ -243,20 +245,6 @@ class _signInDetailsState extends State<signInDetails_lawyer> {
                   ),
                 ),
                 ElevatedButton(
-                    child: SizedBox(
-                      width: 150,
-                      height: 50,
-                      child: Center(
-                        child: Text(
-                          "Verify Phone No.",
-                          style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w800,
-                              fontSize: 16,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
                     style: ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(Color.fromRGBO(
                         44,
@@ -280,25 +268,25 @@ class _signInDetailsState extends State<signInDetails_lawyer> {
                         codeAutoRetrievalTimeout: (String verificationid) {},
                         phoneNumber: _phonenoController.text.toString(),
                       );
-                    }),
+                    },
+                    child: SizedBox(
+                      width: 150,
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          "Verify Phone No.",
+                          style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w800,
+                              fontSize: 16,
+                              color: Colors.white),
+                        ),
+                      ),
+                    )),
                 SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
-                  child: SizedBox(
-                    width: 300,
-                    height: 50,
-                    child: Center(
-                      child: Text(
-                        "Sign Up",
-                        style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w800,
-                            fontSize: 20,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(Color.fromRGBO(
                       44,
@@ -342,6 +330,20 @@ class _signInDetailsState extends State<signInDetails_lawyer> {
                           SnackBar(content: Text("${e.message}")));
                     }
                   },
+                  child: SizedBox(
+                    width: 300,
+                    height: 50,
+                    child: Center(
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w800,
+                            fontSize: 20,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -373,7 +375,7 @@ class _signInDetailsState extends State<signInDetails_lawyer> {
                   // Navigator.pop(context);
                   try {
                     PhoneAuthCredential credential =
-                        await PhoneAuthProvider.credential(
+                        PhoneAuthProvider.credential(
                             verificationId: verificationid,
                             smsCode: _otpController.text.toString());
                     FirebaseAuth.instance

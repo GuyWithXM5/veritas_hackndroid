@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class findcase extends StatefulWidget {
+  const findcase({super.key});
+
   @override
   State<findcase> createState() => _findcaseState();
 }
@@ -10,7 +12,7 @@ class _findcaseState extends State<findcase> {
   List<Widget> cases = [];
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     setcases();
   }
@@ -22,12 +24,19 @@ class _findcaseState extends State<findcase> {
     });
   }
 
-  Future<List<Widget>> getcases() async{
+  Future<List<Widget>> getcases() async {
     List<Widget> cases = [];
-    var query = await FirebaseFirestore.instance.collection("Registerted_Cases(non-assigned)").get();
-    for (var doc in query.docs){
-      QuerySnapshot feed = await FirebaseFirestore.instance.collection("Registerted_Cases(non-assigned)").doc(doc.id).collection("Cases").limit(3).get();
-      for (var casesdoc in feed.docs){
+    var query = await FirebaseFirestore.instance
+        .collection("Registerted_Cases(non-assigned)")
+        .get();
+    for (var doc in query.docs) {
+      QuerySnapshot feed = await FirebaseFirestore.instance
+          .collection("Registerted_Cases(non-assigned)")
+          .doc(doc.id)
+          .collection("Cases")
+          .limit(3)
+          .get();
+      for (var casesdoc in feed.docs) {
         String casetype = casesdoc["caseType"];
         Widget tile = Padding(
           padding: const EdgeInsets.all(4.0),
@@ -36,12 +45,11 @@ class _findcaseState extends State<findcase> {
             decoration: BoxDecoration(
                 color: Colors.blueAccent[100],
                 shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.all(new Radius.circular(10))
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: ListTile(
+              title: Text(casesdoc["caseType"]),
+              subtitle: Text(casesdoc["briefing"]),
             ),
-              child: ListTile(
-                title: Text(casesdoc["caseType"]),
-                subtitle: Text(casesdoc["briefing"]),
-              ),
           ),
         );
         cases.add(tile);
@@ -49,7 +57,6 @@ class _findcaseState extends State<findcase> {
     }
     return cases;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +69,7 @@ class _findcaseState extends State<findcase> {
       body: SafeArea(
         child: ListView.builder(
             itemCount: cases.length,
-            itemBuilder: (context,index){
+            itemBuilder: (context, index) {
               return cases[index];
             }),
       ),

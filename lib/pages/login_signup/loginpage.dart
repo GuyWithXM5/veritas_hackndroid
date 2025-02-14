@@ -7,7 +7,7 @@ import 'package:veritasapp/pages/lawyer/lawyerdashboard.dart';
 class login extends StatefulWidget {
   final String usertype;
 
-  login({Key? key, required this.usertype}) : super(key: key);
+  const login({super.key, required this.usertype});
 
   @override
   State<login> createState() => _loginState();
@@ -47,7 +47,7 @@ class _loginState extends State<login> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(new Radius.circular(25.7))),
+                    borderRadius: BorderRadius.all(Radius.circular(25.7))),
                 child: TextField(
                   textInputAction: TextInputAction.next,
                   controller: _usernamecont,
@@ -65,7 +65,7 @@ class _loginState extends State<login> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.all(new Radius.circular(25.7)),
+                  borderRadius: BorderRadius.all(Radius.circular(25.7)),
                 ),
                 child: TextField(
                   controller: _userpasscont,

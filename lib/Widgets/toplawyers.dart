@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+
 import 'package:veritasapp/Widgets/Dabba.dart'; 
 
 class AutoScrollDashboard extends StatefulWidget {
@@ -52,14 +53,16 @@ class _AutoScrollDashboardState extends State<AutoScrollDashboard> {
         itemCount: 10,
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: varWidth * 0.025), // Adding gap between items
+            padding: EdgeInsets.symmetric(
+                horizontal: varWidth * 0.025), // Adding gap between items
             child: Center(
               child: DashboardBox(
                 boxColor: Colors.black,
                 imagePath: "", // Use your image path here
                 textColor: Colors.white,
                 text: "Lawyer $index",
-                height: varHeight*0.3,
+                height: varHeight * 0.3,
+
               ),
             ),
           );
