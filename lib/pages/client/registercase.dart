@@ -302,7 +302,7 @@ class _regcaseState extends State<regcase> {
                             _descriptionCont.clear();
                             // _isChecked = false;
                             // _selectedOption = null;
-                            Navigator.pushNamed(context, "/selectlawyer");
+                            // Navigator.pushNamed(context, "/selectlawyer");
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content:
