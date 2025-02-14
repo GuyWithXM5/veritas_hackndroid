@@ -41,7 +41,7 @@ class cldashboard extends StatelessWidget {
             SizedBox(height: varHeight * 0.05),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, "/regcase");
+                Navigator.pushNamed(context, "/casestatus");
               },
               child: DashboardBox(
                 textSize: 24,
