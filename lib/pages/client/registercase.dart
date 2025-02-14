@@ -340,12 +340,13 @@ Future<void> _filepicker() async {
                       _descriptionCont.text.trim().isNotEmpty) {
                     final user = FirebaseAuth.instance.currentUser;
                     FirebaseFirestore.instance
-                        .collection("Registerted_Cases(non-assigned)")
-                        .doc(user!.uid)
+                        .collection("regcase")
+                        .doc()
                         .collection("Cases")
                         .add({
-                          "clientName": user.displayName,
-                          "clientEmail": user.email,
+                          "uid": user?.uid,
+                          "clientName": user?.displayName,
+                          "clientEmail": user?.email,
                           "caseType": _selectedOption,
                           "location": _locationCont.text.trim(),
                           "date": _dateCont.text.trim(),
