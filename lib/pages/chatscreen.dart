@@ -1,10 +1,11 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:veritasapp/messages.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:http/http.dart' as http;
+import 'package:veritasapp/Widgets/bottomnavigation.dart';
+import 'package:veritasapp/messages.dart';
 
 class chatsection extends StatefulWidget {
   final String receivertype;
@@ -29,13 +30,9 @@ class _chatsectionState extends State<chatsection> {
 
   void getAiResponse(
       String message, String currentUserId, String currentUserEmail) async {
-    // this fuction should update the db and receive the response from api
-
     final url =
         "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyDf2x-ENW14KrJEJZSIgY4LLnTv6ns52bQ";
-    final header = {
-      "Content-Type": "application/json",
-    };
+    final header = {"Content-Type": "application/json"};
     final data = {
       "contents": [
         {
@@ -46,6 +43,7 @@ class _chatsectionState extends State<chatsection> {
       ]
     };
     final Timestamp timestamp = Timestamp.now();
+
     await http
         .post(Uri.parse(url), headers: header, body: jsonEncode(data))
         .then((value) {
@@ -65,45 +63,37 @@ class _chatsectionState extends State<chatsection> {
             .collection("message")
             .add(newMessage.toMap());
       }
-    }).catchError((e) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(content: const Text("${e.message}"))
-      // );
-    });
+    }).catchError((e) {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        // padding: const EdgeInsets.only(top:20),
-        color: const Color.fromRGBO(
-            29, 29, 29, 1), // Set the color to match the "CASE STATUS" card
-        child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.white),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.file_copy_sharp, color: Colors.white),
-              label: 'My Files',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.payment_sharp, color: Colors.white),
-              label: 'Payments',
-            ),
-          ],
-          backgroundColor: Colors.transparent, // Set to transparent
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.white,
-          // Add any additional properties you want for the BottomNavigationBar,
-        ),
+      bottomNavigationBar: BottomNavigationDabba(
+        index: 0,
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.pop(context);
+          }
+          // print("Selected Index: $index");
+        },
+        backgroundColor: Color.fromRGBO(132, 189, 255, 1),
+        buttonColor: Colors.black,
+        icons: [Icons.home, Icons.file_copy, Icons.payment],
       ),
       appBar: AppBar(
         backgroundColor: Colors.blueAccent[100],
-        title: const Text("Chat Bot"),
-        // elevation: 60,
+        title: Padding(
+          padding: EdgeInsets.only(right: 50),
+          child: Center(
+            child: const Text(
+              "Chat Bot",
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Column(
@@ -120,63 +110,51 @@ class _chatsectionState extends State<chatsection> {
                   if (snapShot.hasData) {
                     final messages = snapShot.data?.docs.reversed.toList();
                     for (var i in messages!) {
-                      if (i["senderId"] == _firebaseAuth.currentUser!.uid) {
-                        messagesent.add(
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
+                      bool isCurrentUser =
+                          i["senderId"] == _firebaseAuth.currentUser!.uid;
+                      messagesent.add(
+                        Align(
+                          alignment: isCurrentUser
+                              ? Alignment.topRight
+                              : Alignment.topLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Container(
+                              padding: EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                color: isCurrentUser
+                                    ? Colors.blueAccent[100]
+                                    : Color.fromRGBO(132, 189, 255, 1),
+                                shape: BoxShape.rectangle,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
                               child: Container(
                                 padding: EdgeInsets.all(5),
                                 decoration: BoxDecoration(
-                                    color: Colors.blueAccent[100],
-                                    shape: BoxShape.rectangle,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.blueAccent[200],
-                                      shape: BoxShape.rectangle,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: Text(
-                                    i["message"],
+                                  color: isCurrentUser
+                                      ? Colors.blueAccent[200]
+                                      : Colors.black,
+                                  shape: BoxShape.rectangle,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                child: MarkdownBody(
+                                  data: i["message"], // Markdown parsing
+                                  styleSheet: MarkdownStyleSheet(
+                                    p: TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white), // Customize text
+                                    strong: TextStyle(
+                                        fontWeight:
+                                            FontWeight.bold), // Bold support
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        );
-                      } else {
-                        messagesent.add(
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    color: Colors.grey[500],
-                                    shape: BoxShape.rectangle,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
-                                child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey[600],
-                                      shape: BoxShape.rectangle,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: Text(
-                                    i["message"],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }
+                        ),
+                      );
                     }
                   }
                   return Expanded(
@@ -192,29 +170,24 @@ class _chatsectionState extends State<chatsection> {
               child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.all(8.0),
-                      height: 55,
-                      width: 280,
-                      decoration: BoxDecoration(
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.all(8.0),
+                        padding: EdgeInsets.symmetric(horizontal: 12.0),
+                        decoration: BoxDecoration(
                           color: Colors.blueAccent[100],
-                          shape: BoxShape.rectangle,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(25.7))),
-                      child: TextField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: null,
-                        expands: true,
-                        controller: _message,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.emoji_emotions_outlined),
-                          hintText: 'Message',
-                          hintStyle: TextStyle(
-                            color: Colors.black,
+                          borderRadius: BorderRadius.all(Radius.circular(25.7)),
+                        ),
+                        child: TextField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null, // Allow infinite lines
+                          controller: _message,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.emoji_emotions_outlined),
+                            hintText: 'Message',
+                            hintStyle: TextStyle(color: Colors.black),
                           ),
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                         ),
                       ),
                     ),
@@ -225,6 +198,7 @@ class _chatsectionState extends State<chatsection> {
                         final String currentUserEmail =
                             _firebaseAuth.currentUser!.email.toString();
                         final Timestamp timestamp = Timestamp.now();
+
                         if (_message.text.trim().isNotEmpty) {
                           Message newMessage = Message(
                               senderId: currentUserId,
@@ -238,6 +212,7 @@ class _chatsectionState extends State<chatsection> {
                               .doc(getChatRoomId())
                               .collection("message")
                               .add(newMessage.toMap());
+
                           if (widget.receivertype == "chatbot") {
                             getAiResponse(_message.text.trim(), currentUserId,
                                 currentUserEmail);
