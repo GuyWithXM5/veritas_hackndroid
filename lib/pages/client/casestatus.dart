@@ -17,7 +17,7 @@ class _CaseStatusState extends State<Casestatus> {
   Future<void> _deleteCase(String caseId) async {
     try {
       await _db
-          .collection("Registerted_Cases(non-assigned)")
+          .collection("regcase")
           .doc(_firebaseAuth.currentUser!.uid)
           .collection("Cases")
           .doc(caseId)
@@ -71,7 +71,7 @@ class _CaseStatusState extends State<Casestatus> {
           "Your Case Status",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
-        backgroundColor:const Color.fromRGBO(132, 189, 255, 1),
+        backgroundColor: const Color.fromRGBO(132, 189, 255, 1),
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -172,9 +172,9 @@ class _CaseStatusState extends State<Casestatus> {
       ),
       bottomNavigationBar: BottomNavigationDabba(
         index: 0,
-        onTap: (index ) {
+        onTap: (index) {
           // print("Selected Index: $index");
-          if(index==0){
+          if (index == 0) {
             Navigator.pushNamed(context, "/cldashboard");
           }
         },
