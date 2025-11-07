@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:veritasapp/hero_dialog_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SearchButton extends StatelessWidget {
   const SearchButton({super.key});
@@ -84,9 +85,10 @@ class _PopupCard extends StatelessWidget {
                   ),
                   TextButton(onPressed: () {}, child: Text("Profile")),
                   TextButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
                         Navigator.pushNamedAndRemoveUntil(
-                            context, "/loginclient", (route) => false);
+                            context, "/first", (route) => false);
                         ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: const Text("Logged out")));
                       },
