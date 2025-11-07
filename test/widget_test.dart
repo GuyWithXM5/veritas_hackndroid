@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 
-// This is a basic widget test to ensure the test setup is working
+import 'test_logger.dart';
+
 void main() {
-  testWidgets('Test setup verification', (WidgetTester tester) async {
-    // Build a simple widget
+  loggableTestWidgets('Test setup verification', (WidgetTester tester) async {
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
           body: Center(
             child: Text('Test'),
@@ -15,7 +16,6 @@ void main() {
       ),
     );
 
-    // Verify the widget is rendered
     expect(find.text('Test'), findsOneWidget);
   });
 }
