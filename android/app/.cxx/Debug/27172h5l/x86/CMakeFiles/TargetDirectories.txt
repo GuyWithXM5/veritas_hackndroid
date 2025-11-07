@@ -1,2 +1,0 @@
-D:/Projects/hackndroid/veritas_hackndroid/android/app/.cxx/Debug/27172h5l/x86/CMakeFiles/edit_cache.dir
-D:/Projects/hackndroid/veritas_hackndroid/android/app/.cxx/Debug/27172h5l/x86/CMakeFiles/rebuild_cache.dir

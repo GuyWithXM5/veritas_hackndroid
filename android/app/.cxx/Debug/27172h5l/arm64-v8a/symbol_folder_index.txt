@@ -1,1 +1,0 @@
-D:\Projects\hackndroid\veritas_hackndroid\build\app\intermediates\cxx\Debug\27172h5l\obj\arm64-v8a

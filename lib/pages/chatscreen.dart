@@ -31,7 +31,7 @@ class _chatsectionState extends State<chatsection> {
   void getAiResponse(
       String message, String currentUserId, String currentUserEmail) async {
     final url =
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyC68Q-dxt7RpRvdOUEKqQGUNQAXXGhXoU0";
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDDMwcUsuQwx3hxkcbdmu2TUqQNvWCG-mI";
     final header = {"Content-Type": "application/json"};
     final data = {
       "contents": [
